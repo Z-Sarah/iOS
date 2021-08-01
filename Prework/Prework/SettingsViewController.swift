@@ -16,7 +16,7 @@ class SettingsViewController: UIViewController {
 //        darkModeSwitch.backgroundColor = .black
 //        return darkModeSwitch
 //    }()
-    @IBOutlet var mySwitch: UISwitch!
+//    @IBOutlet var mySwitch: UISwitch!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,15 +26,21 @@ class SettingsViewController: UIViewController {
 //        view.addSubview(darkModeSwitch)
     }
     
-    @IBAction func setDarkMode(_ sender: UISwitch) {
-        if sender.isOn {
-            view.backgroundColor = .red
-        } else {
-            view.backgroundColor = .blue
+//    @IBAction func setDarkMode(_ sender: UISwitch) {
+//        if sender.isOn {
+//            view.backgroundColor = .red
+//        } else {
+//            view.backgroundColor = .blue
+//        }
+//    }
+//
+    @IBAction func setDarkMode() {
+        guard let vc = storyboard?.instantiateViewController(identifier: "darkModeVC") as? DarkModeViewController else {
+            return
         }
-        
+        present(vc, animated: true)
     }
-
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -45,5 +51,6 @@ class SettingsViewController: UIViewController {
 //           let destVC = segue.destination as? SettingsViewController {
 //            setDarkMode(destVC)}
 //    }
+
 
 }

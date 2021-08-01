@@ -137,7 +137,7 @@
         <!--Settings View Controller-->
         <scene sceneID="BHc-LO-5ck">
             <objects>
-                <viewController id="DYI-BG-fgS" customClass="SettingsViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SettingVC" id="DYI-BG-fgS" customClass="SettingsViewController" customModule="Prework" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9f9-MQ-0Or">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -176,7 +176,7 @@
                                 <rect key="frame" x="347" y="554" width="49" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
-                                    <action selector="setDarkMode:" destination="DYI-BG-fgS" eventType="valueChanged" id="wqs-fA-ToX"/>
+                                    <action selector="setDarkMode" destination="DYI-BG-fgS" eventType="valueChanged" id="Jsl-cD-Exl"/>
                                 </connections>
                             </switch>
                         </subviews>
@@ -201,18 +201,33 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="k4U-i5-UOe"/>
-                    <connections>
-                        <outlet property="mySwitch" destination="YuW-6U-vcB" id="cRH-m4-zt7"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cU9-JH-hyO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1811.594202898551" y="83.705357142857139"/>
         </scene>
+        <!--Dark Mode View Controller-->
+        <scene sceneID="kp0-hO-lUO">
+            <objects>
+                <viewController storyboardIdentifier="darkModeVC" id="zSP-Da-kVH" customClass="DarkModeViewController" customModule="Prework" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="88m-r8-SY4">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="DYD-Bw-QcD"/>
+                        <color key="backgroundColor" systemColor="systemGreenColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VDs-to-1qP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2552" y="93"/>
+        </scene>
     </scenes>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

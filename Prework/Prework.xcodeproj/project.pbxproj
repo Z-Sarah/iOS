@@ -16,6 +16,7 @@
 		2620B149269A5667006457A4 /* PreworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2620B148269A5667006457A4 /* PreworkTests.swift */; };
 		2620B154269A5668006457A4 /* PreworkUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2620B153269A5668006457A4 /* PreworkUITests.swift */; };
 		2620B162269B1508006457A4 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2620B161269B1508006457A4 /* SettingsViewController.swift */; };
+		266549FB26B70DCF00E7D662 /* DarkModeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266549FA26B70DCF00E7D662 /* DarkModeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		2620B153269A5668006457A4 /* PreworkUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreworkUITests.swift; sourceTree = "<group>"; };
 		2620B155269A5668006457A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2620B161269B1508006457A4 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		266549FA26B70DCF00E7D662 /* DarkModeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkModeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 		2620B125269A5665006457A4 = {
 			isa = PBXGroup;
 			children = (
+				266549FA26B70DCF00E7D662 /* DarkModeViewController.swift */,
 				2620B130269A5665006457A4 /* Prework */,
 				2620B147269A5667006457A4 /* PreworkTests */,
 				2620B152269A5668006457A4 /* PreworkUITests */,
@@ -261,6 +264,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				266549FB26B70DCF00E7D662 /* DarkModeViewController.swift in Sources */,
 				2620B136269A5665006457A4 /* ViewController.swift in Sources */,
 				2620B132269A5665006457A4 /* AppDelegate.swift in Sources */,
 				2620B134269A5665006457A4 /* SceneDelegate.swift in Sources */,
