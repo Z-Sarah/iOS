@@ -107,6 +107,9 @@
                     <connections>
                         <outlet property="Settings" destination="SzJ-vG-nB3" id="Uhg-KI-HAe"/>
                         <outlet property="billAmountTextField" destination="HOn-rM-Lge" id="E19-hS-OVj"/>
+                        <outlet property="text1" destination="T1U-MM-yxc" id="m4c-F6-Olq"/>
+                        <outlet property="text2" destination="6OL-Dd-xdI" id="hxV-Ba-il1"/>
+                        <outlet property="text3" destination="xnI-iT-4IG" id="DQJ-ln-3z0"/>
                         <outlet property="tipAmountLabel" destination="2Z0-6D-1X1" id="2ev-80-2Mg"/>
                         <outlet property="tipControl" destination="JmI-0t-a5b" id="Bps-6c-PdN"/>
                         <outlet property="totalLabel" destination="MmN-g5-9VJ" id="f4s-OP-85g"/>

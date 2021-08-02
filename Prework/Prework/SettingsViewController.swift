@@ -49,8 +49,8 @@ class SettingsViewController: UIViewController {
     
 
     @IBAction func setTips(_ sender: Any) {
-        NotificationCenter.default.post(name: Notification.Name("text1"), object: field1.text)
-        dismiss(animated: true, completion: nil)
+        UserDefaults.standard.set(mySwitch.isOn, forKey: "isDarkMode")
+        NotificationCenter.default.post(name: Notification.Name("darkMode"), object: nil)
     }
 
 }
