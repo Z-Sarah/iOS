@@ -17,6 +17,9 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var tip3: UILabel!
     @IBOutlet weak var darkMode: UILabel!
     
+    @IBOutlet weak var field1: UITextField!
+    @IBOutlet weak var field2: UITextField!
+    @IBOutlet weak var field3: UITextField!
     @IBAction func darkModeSwitch(_ sender: Any) {
         setDarkMode()
     }
@@ -41,6 +44,13 @@ class SettingsViewController: UIViewController {
             tip3.textColor = .black
             darkMode.textColor = .black
         }
+    }
+    
+    
+
+    @IBAction func setTips(_ sender: Any) {
+        NotificationCenter.default.post(name: Notification.Name("text1"), object: field1.text)
+        dismiss(animated: true, completion: nil)
     }
 
 }

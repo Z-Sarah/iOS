@@ -21,8 +21,13 @@ class ViewController: UIViewController {
         
         // Sets the title in the Navigation Bar
         self.title = "Tip Calculator"
+        NotificationCenter.default.addObserver(self, selector: #selector(getNotification(_:)), name: Notification.Name("text1"), object: nil)
     }
-
+    
+    @objc func getNotification(_ notification: Notification) {
+        let text1 = notification.object as! String?
+        tipControl.setTitle(text1, forSegmentAt: 0)
+    }
     @IBAction func calculateTip(_ sender: Any) {
         // Get bill amount from text field input
         let bill = Double(billAmountTextField.text!) ?? 0

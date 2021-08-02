@@ -197,16 +197,27 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oSP-dN-Nel">
+                                <rect key="frame" x="190" y="696" width="34" height="30"/>
+                                <state key="normal" title="Save">
+                                    <color key="titleColor" systemColor="systemBlueColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="setTips:" destination="DYI-BG-fgS" eventType="touchUpInside" id="fRl-sv-AxB"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="x3x-il-Ubw"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="kJb-ub-4zJ" firstAttribute="leading" secondItem="q8Z-VY-x57" secondAttribute="leading" id="0WS-eg-CrK"/>
+                            <constraint firstItem="x3x-il-Ubw" firstAttribute="bottom" secondItem="oSP-dN-Nel" secondAttribute="bottom" constant="136" id="4Oy-dw-tjb"/>
                             <constraint firstItem="x3x-il-Ubw" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="kJb-ub-4zJ" secondAttribute="trailing" symbolic="YES" id="7Ip-cR-lft"/>
                             <constraint firstItem="x3x-il-Ubw" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="q8Z-VY-x57" secondAttribute="trailing" symbolic="YES" id="AUY-wV-ete"/>
                             <constraint firstItem="x3x-il-Ubw" firstAttribute="bottom" secondItem="kJb-ub-4zJ" secondAttribute="bottom" constant="452" id="BE6-kq-GoN"/>
                             <constraint firstItem="kJb-ub-4zJ" firstAttribute="leading" secondItem="H8M-Md-fPo" secondAttribute="leading" id="BYn-1j-Gci"/>
                             <constraint firstItem="g4k-ex-IbO" firstAttribute="leading" secondItem="RpP-8T-CgF" secondAttribute="leading" id="GVM-TM-Zog"/>
+                            <constraint firstItem="oSP-dN-Nel" firstAttribute="centerX" secondItem="9f9-MQ-0Or" secondAttribute="centerX" id="HIz-8e-APb"/>
                             <constraint firstItem="x3x-il-Ubw" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="g4k-ex-IbO" secondAttribute="trailing" symbolic="YES" id="UjI-ox-XsK"/>
                             <constraint firstItem="x3x-il-Ubw" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="H8M-Md-fPo" secondAttribute="trailing" symbolic="YES" id="dgK-61-Ab4"/>
                             <constraint firstItem="RpP-8T-CgF" firstAttribute="top" secondItem="x3x-il-Ubw" secondAttribute="top" constant="36" id="m6Y-Ol-Y7w"/>
@@ -221,6 +232,9 @@
                     <navigationItem key="navigationItem" id="k4U-i5-UOe"/>
                     <connections>
                         <outlet property="darkMode" destination="g4k-ex-IbO" id="6Dy-aU-MZb"/>
+                        <outlet property="field1" destination="JUE-Zh-8ci" id="tfG-Yd-q1e"/>
+                        <outlet property="field2" destination="u6Z-ww-7Kd" id="5Hf-B3-Hxr"/>
+                        <outlet property="field3" destination="BwX-bS-pvp" id="3EK-f4-l5n"/>
                         <outlet property="mySwitch" destination="YuW-6U-vcB" id="kj8-Gb-kkI"/>
                         <outlet property="setDefaultTips" destination="RpP-8T-CgF" id="8DK-IF-wmk"/>
                         <outlet property="tip1" destination="H8M-Md-fPo" id="HwM-0J-x6U"/>
@@ -251,6 +265,9 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
