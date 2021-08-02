@@ -172,11 +172,11 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YuW-6U-vcB">
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="YuW-6U-vcB">
                                 <rect key="frame" x="347" y="554" width="49" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
-                                    <action selector="setDarkMode" destination="DYI-BG-fgS" eventType="valueChanged" id="Jsl-cD-Exl"/>
+                                    <action selector="darkModeSwitch:" destination="DYI-BG-fgS" eventType="valueChanged" id="9fR-7h-WUH"/>
                                 </connections>
                             </switch>
                         </subviews>
@@ -201,6 +201,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="k4U-i5-UOe"/>
+                    <connections>
+                        <outlet property="mySwitch" destination="YuW-6U-vcB" id="kj8-Gb-kkI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cU9-JH-hyO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -219,7 +222,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VDs-to-1qP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2552" y="93"/>
+            <point key="canvasLocation" x="2575" y="84"/>
         </scene>
     </scenes>
     <resources>
