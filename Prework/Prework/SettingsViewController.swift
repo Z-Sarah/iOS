@@ -22,11 +22,22 @@ class SettingsViewController: UIViewController {
     @IBAction func darkModeSwitch(_ sender: Any) {
         setDarkMode()
     }
-
+    
+    let myKeys = ["tip1","tip2","tip3"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setDarkMode()
+        for key in myKeys {
+            let myTip = UserDefaults.standard.string(forKey: key)
+            if key.compare("tip1").rawValue == 0 {
+                field1.text = myTip
+            } else if key.compare("tip2").rawValue == 0 {
+                field2.text = myTip
+            } else {
+                field3.text = myTip
+            }
+        }
     }
     
     func setDarkMode() {
@@ -48,8 +59,8 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func setTips(_ sender: Any) {
-        UserDefaults.standard.set(mySwitch.isOn, forKey: "tappedSave")
-        NotificationCenter.default.post(name: Notification.Name("tappedSave"), object: nil)
+        UserDefaults.standard.set(mySwitch.isOn, forKey: "switchMode")
+        NotificationCenter.default.post(name: Notification.Name("switchMode"), object: nil)
         
         NotificationCenter.default.post(name: Notification.Name("customTip1"), object: field1.text)
         NotificationCenter.default.post(name: Notification.Name("customTip2"), object: field2.text)

@@ -22,7 +22,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Tip Calculator"
-        NotificationCenter.default.addObserver(self, selector: #selector(getNotification(_:)), name: Notification.Name("tappedSave"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(getNotification(_:)), name: Notification.Name("switchMode"), object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(setCustomTip1(_:)), name: Notification.Name("customTip1"), object: nil)
         
@@ -33,17 +33,10 @@ class ViewController: UIViewController {
         tipControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.blue], for: .selected)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
-    
     @objc func setCustomTip1(_ notification: Notification) {
         var customTip1 = notification.object as! String?
         tipControl.setTitle(customTip1, forSegmentAt: 0)
+        UserDefaults.standard.setValue(customTip1, forKey: "tip1")
         if customTip1?.last == "%" {
             customTip1!.removeLast()
         }
@@ -53,6 +46,7 @@ class ViewController: UIViewController {
     @objc func setCustomTip2(_ notification: Notification) {
         var customTip2 = notification.object as! String?
         tipControl.setTitle(customTip2, forSegmentAt: 1)
+        UserDefaults.standard.setValue(customTip2, forKey: "tip2")
         if customTip2?.last == "%" {
             customTip2!.removeLast()
         }
@@ -62,6 +56,7 @@ class ViewController: UIViewController {
     @objc func setCustomTip3(_ notification: Notification) {
         var customTip3 = notification.object as! String?
         tipControl.setTitle(customTip3, forSegmentAt: 2)
+        UserDefaults.standard.setValue(customTip3, forKey: "tip3")
         if customTip3?.last == "%" {
             customTip3!.removeLast()
         }
@@ -69,7 +64,7 @@ class ViewController: UIViewController {
     }
     
     @objc func getNotification(_ notification: Notification) {
-        let isDarkMode = UserDefaults.standard.bool(forKey: "tappedSave")
+        let isDarkMode = UserDefaults.standard.bool(forKey: "switchMode")
         if(isDarkMode) {
             view.backgroundColor = .black
             tipAmountLabel.textColor = .white
@@ -77,7 +72,6 @@ class ViewController: UIViewController {
             text1.textColor = .white
             text2.textColor = .white
             text3.textColor = .white
-        
         } else {
             view.backgroundColor = .white
             tipAmountLabel.textColor = .black
