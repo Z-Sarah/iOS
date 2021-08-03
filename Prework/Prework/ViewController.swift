@@ -17,7 +17,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var text1: UILabel!
     @IBOutlet weak var text2: UILabel!
     @IBOutlet weak var text3: UILabel!
-    var customTips = [Double]()
+    var customTips = [0.15, 0.18, 0.2]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +41,7 @@ class ViewController: UIViewController {
         if customTip1?.last == "%" {
             customTip1!.removeLast()
         }
-        customTips.append((Double(customTip1!)!/100.0))
+        customTips[0] = Double(customTip1!)!/100.0
     }
     
     @objc func setCustomTip2(_ notification: Notification) {
@@ -51,7 +51,7 @@ class ViewController: UIViewController {
         if customTip2?.last == "%" {
             customTip2!.removeLast()
         }
-        customTips.append((Double(customTip2!)!/100.0))
+        customTips[1] = Double(customTip2!)!/100.0
     }
     
     @objc func setCustomTip3(_ notification: Notification) {
@@ -61,7 +61,7 @@ class ViewController: UIViewController {
         if customTip3?.last == "%" {
             customTip3!.removeLast()
         }
-        customTips.append((Double(customTip3!)!/100.0))
+        customTips[2] = Double(customTip3!)!/100.0
     }
     
     @objc func getNotification(_ notification: Notification) {
@@ -86,14 +86,8 @@ class ViewController: UIViewController {
     
     @IBAction func calculateTip(_ sender: Any) {
         
-        var tipPercentages = [Double]()
         let bill = Double(billAmountTextField.text!) ?? 0
-        print(customTips)
-        if !customTips.isEmpty {
-            tipPercentages = [customTips[0],customTips[1],customTips[2]]
-        } else {
-            tipPercentages = [0.15, 0.18, 0.2]
-        }
+        let tipPercentages = customTips
         let tip = bill * tipPercentages[tipControl.selectedSegmentIndex]
         let total = bill + tip
 
