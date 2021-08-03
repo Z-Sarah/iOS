@@ -18,41 +18,30 @@ class ViewController: UIViewController {
     @IBOutlet weak var text2: UILabel!
     @IBOutlet weak var text3: UILabel!
     var customTips = [0.15, 0.18, 0.2]
-    
+    var tipDict = [0 : "tip0", 1 : "tip1", 2 : "tip2"]
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Tip Calculator"
 
         NotificationCenter.default.addObserver(self, selector: #selector(getNotification(_:)), name: Notification.Name("switchMode"), object: nil)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(setCustomTip1(_:)), name: Notification.Name("customTip1"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setCustomTips(_:)), name: Notification.Name("tip0"), object: nil)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(setCustomTip2(_:)), name: Notification.Name("customTip2"), object: nil)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(setCustomTip3(_:)), name: Notification.Name("customTip3"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setCustomTips(_:)), name: Notification.Name("tip1"), object: nil)
+
+        NotificationCenter.default.addObserver(self, selector: #selector(setCustomTips(_:)), name: Notification.Name("tip2"), object: nil)
         
         tipControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.blue], for: .selected)
     }
     
-    @objc func setCustomTip1(_ notification: Notification) {
+    @objc func setCustomTips(_ notification: Notification) {
+        let notificationName = notification.name.rawValue
+        let index = Int(notification.name.rawValue.dropFirst(3))
         let myCustomTips = notification.object as! String?
-        tipControl.setTitle(myCustomTips, forSegmentAt: 0)
-        UserDefaults.standard.setValue(myCustomTips, forKey: "tip1")
-        showCustomTip(customTip: myCustomTips!, index: 0)
-    }
-    
-    @objc func setCustomTip2(_ notification: Notification) {
-        let customTip2 = notification.object as! String?
-        tipControl.setTitle(customTip2, forSegmentAt: 1)
-        UserDefaults.standard.setValue(customTip2, forKey: "tip2")
-        showCustomTip(customTip: customTip2!, index: 1)
-    }
-    
-    @objc func setCustomTip3(_ notification: Notification) {
-        let customTip3 = notification.object as! String?
-        tipControl.setTitle(customTip3, forSegmentAt: 2)
-        UserDefaults.standard.setValue(customTip3, forKey: "tip3")
-        showCustomTip(customTip: customTip3!, index: 2)
+        tipControl.setTitle(myCustomTips, forSegmentAt: index ?? 0)
+        UserDefaults.standard.setValue(myCustomTips, forKey: notificationName)
+        showCustomTip(customTip: myCustomTips!, index: index ?? 0)
+//        print(String(index) + "..." + notificationName)
     }
     
     func showCustomTip(customTip: String, index: Int) {

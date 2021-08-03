@@ -23,7 +23,7 @@ class SettingsViewController: UIViewController {
         setDarkMode()
     }
     
-    let myKeys = ["tip1","tip2","tip3"]
+    let myKeys = ["tip0","tip1","tip2"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,9 +31,9 @@ class SettingsViewController: UIViewController {
         setupToolbar()
         for key in myKeys {
             let myTip = UserDefaults.standard.string(forKey: key)
-            if key.compare("tip1").rawValue == 0 {
+            if key.compare("tip0").rawValue == 0 {
                 field1.text = myTip
-            } else if key.compare("tip2").rawValue == 0 {
+            } else if key.compare("tip1").rawValue == 0 {
                 field2.text = myTip
             } else {
                 field3.text = myTip
@@ -63,9 +63,9 @@ class SettingsViewController: UIViewController {
         UserDefaults.standard.set(mySwitch.isOn, forKey: "switchMode")
         NotificationCenter.default.post(name: Notification.Name("switchMode"), object: nil)
         
-        NotificationCenter.default.post(name: Notification.Name("customTip1"), object: field1.text)
-        NotificationCenter.default.post(name: Notification.Name("customTip2"), object: field2.text)
-        NotificationCenter.default.post(name: Notification.Name("customTip3"), object: field3.text)
+        NotificationCenter.default.post(name: Notification.Name("tip0"), object: field1.text)
+        NotificationCenter.default.post(name: Notification.Name("tip1"), object: field2.text)
+        NotificationCenter.default.post(name: Notification.Name("tip2"), object: field3.text)
     }
 
     func setupToolbar() {
