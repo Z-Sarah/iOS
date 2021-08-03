@@ -20,25 +20,66 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        
-        // Sets the title in the Navigation Bar
         self.title = "Tip Calculator"
-        NotificationCenter.default.addObserver(self, selector: #selector(getDarkMode(_:)), name: Notification.Name("darkMode"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(getNotification(_:)), name: Notification.Name("tappedSave"), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(setCustomTip1(_:)), name: Notification.Name("customTip1"), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(setCustomTip2(_:)), name: Notification.Name("customTip2"), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(setCustomTip3(_:)), name: Notification.Name("customTip3"), object: nil)
+        
+        tipControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.blue], for: .selected)
     }
     
-    @objc func getDarkMode(_ notification: Notification) {
-        let isDarkMode = UserDefaults.standard.bool(forKey: "isDarkMode")
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+    }
+    
+    @IBAction func calculateTip(_ sender: Any) {
+
+        let bill = Double(billAmountTextField.text!) ?? 0
+        let tipPercentages = [0.15, 0.18, 0.2]
+        let tip = bill * tipPercentages[tipControl.selectedSegmentIndex]
+        let total = bill + tip
+
+        tipAmountLabel.text = String(format: "$%.2f", tip)
+        totalLabel.text = String(format: "$%.2f", total)
+    }
+
+    @objc func setCustomTip1(_ notification: Notification) {
+        var numSeg = 0
+        while numSeg < 3 {
+            let customTip = notification.object as! String?
+            tipControl.setTitle(customTip, forSegmentAt: numSeg)
+            numSeg += 1
+        }
+    }
+    
+    @objc func setCustomTip2(_ notification: Notification) {
+        let customTip = notification.object as! String?
+        tipControl.setTitle(customTip, forSegmentAt: 1)
+    }
+    
+    @objc func setCustomTip3(_ notification: Notification) {
+        let customTip = notification.object as! String?
+        tipControl.setTitle(customTip, forSegmentAt: 2)
+    }
+    
+    @objc func getNotification(_ notification: Notification) {
+        let isDarkMode = UserDefaults.standard.bool(forKey: "tappedSave")
         if(isDarkMode) {
             view.backgroundColor = .black
             tipAmountLabel.textColor = .white
             totalLabel.textColor = .white
-            billAmountTextField.textColor = .white
             text1.textColor = .white
             text2.textColor = .white
             text3.textColor = .white
-            tipControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.blue], for: .selected)
-            
+        
         } else {
             view.backgroundColor = .white
             tipAmountLabel.textColor = .black
@@ -47,25 +88,7 @@ class ViewController: UIViewController {
             text1.textColor = .black
             text2.textColor = .black
             text3.textColor = .black
-            tipControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black], for: .selected)
         }
     }
-    
-    @IBAction func calculateTip(_ sender: Any) {
-        // Get bill amount from text field input
-        let bill = Double(billAmountTextField.text!) ?? 0
-        
-        // Get Total tip by multiplying tip * tipPercentage
-        let tipPercentages = [0.15, 0.18, 0.2]
-        let tip = bill * tipPercentages[tipControl.selectedSegmentIndex]
-        let total = bill + tip
-        
-        // Update Tip Amount Label
-        tipAmountLabel.text = String(format: "$%.2f", tip)
-        // Update Total Amount
-        totalLabel.text = String(format: "$%.2f", total)
-        
-    }
-
 }
 
