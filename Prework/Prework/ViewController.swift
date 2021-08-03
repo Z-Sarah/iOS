@@ -42,21 +42,30 @@ class ViewController: UIViewController {
     }
     
     @objc func setCustomTip1(_ notification: Notification) {
-        let customTip1 = notification.object as! String?
+        var customTip1 = notification.object as! String?
         tipControl.setTitle(customTip1, forSegmentAt: 0)
-        customTips.append(Double(customTip1!) ?? 0)
+        if customTip1?.last == "%" {
+            customTip1!.removeLast()
+        }
+        customTips.append((Double(customTip1!)!/100.0))
     }
     
     @objc func setCustomTip2(_ notification: Notification) {
-        let customTip2 = notification.object as! String?
+        var customTip2 = notification.object as! String?
         tipControl.setTitle(customTip2, forSegmentAt: 1)
-        customTips.append(Double(customTip2!) ?? 0)
+        if customTip2?.last == "%" {
+            customTip2!.removeLast()
+        }
+        customTips.append((Double(customTip2!)!/100.0))
     }
     
     @objc func setCustomTip3(_ notification: Notification) {
-        let customTip3 = notification.object as! String?
+        var customTip3 = notification.object as! String?
         tipControl.setTitle(customTip3, forSegmentAt: 2)
-        customTips.append(Double(customTip3!) ?? 0)
+        if customTip3?.last == "%" {
+            customTip3!.removeLast()
+        }
+        customTips.append((Double(customTip3!)!/100.0))
     }
     
     @objc func getNotification(_ notification: Notification) {
