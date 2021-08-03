@@ -28,6 +28,7 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setDarkMode()
+        setupToolbar()
         for key in myKeys {
             let myTip = UserDefaults.standard.string(forKey: key)
             if key.compare("tip1").rawValue == 0 {
@@ -67,4 +68,18 @@ class SettingsViewController: UIViewController {
         NotificationCenter.default.post(name: Notification.Name("customTip3"), object: field3.text)
     }
 
+    func setupToolbar() {
+        let bar = UIToolbar()
+        let doneBotton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(dismissKeyboard))
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        bar.items = [flexSpace, flexSpace, doneBotton]
+        bar.sizeToFit()
+        field1.inputAccessoryView = bar
+        field2.inputAccessoryView = bar
+        field3.inputAccessoryView = bar
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
 }
