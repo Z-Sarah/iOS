@@ -35,33 +35,29 @@ class ViewController: UIViewController {
     }
     
     @objc func setCustomTip1(_ notification: Notification) {
-        var customTip1 = notification.object as! String?
-        tipControl.setTitle(customTip1, forSegmentAt: 0)
-        UserDefaults.standard.setValue(customTip1, forKey: "tip1")
-        if customTip1?.last == "%" {
-            customTip1!.removeLast()
-        }
-        customTips[0] = Double(customTip1!)!/100.0
+        let myCustomTips = notification.object as! String?
+        tipControl.setTitle(myCustomTips, forSegmentAt: 0)
+        UserDefaults.standard.setValue(myCustomTips, forKey: "tip1")
+        showCustomTip(customTip: myCustomTips!, index: 0)
     }
     
     @objc func setCustomTip2(_ notification: Notification) {
-        var customTip2 = notification.object as! String?
+        let customTip2 = notification.object as! String?
         tipControl.setTitle(customTip2, forSegmentAt: 1)
         UserDefaults.standard.setValue(customTip2, forKey: "tip2")
-        if customTip2?.last == "%" {
-            customTip2!.removeLast()
-        }
-        customTips[1] = Double(customTip2!)!/100.0
+        showCustomTip(customTip: customTip2!, index: 1)
     }
     
     @objc func setCustomTip3(_ notification: Notification) {
-        var customTip3 = notification.object as! String?
+        let customTip3 = notification.object as! String?
         tipControl.setTitle(customTip3, forSegmentAt: 2)
         UserDefaults.standard.setValue(customTip3, forKey: "tip3")
-        if customTip3?.last == "%" {
-            customTip3!.removeLast()
-        }
-        customTips[2] = Double(customTip3!)!/100.0
+        showCustomTip(customTip: customTip3!, index: 2)
+    }
+    
+    func showCustomTip(customTip: String, index: Int) {
+        let myCustomTip = customTip.dropLast()
+        customTips[index] = Double(myCustomTip)!/100.0
     }
     
     @objc func getNotification(_ notification: Notification) {
