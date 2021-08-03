@@ -17,6 +17,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var text1: UILabel!
     @IBOutlet weak var text2: UILabel!
     @IBOutlet weak var text3: UILabel!
+    var customTips = [Double]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,34 +41,22 @@ class ViewController: UIViewController {
         super.viewWillDisappear(animated)
     }
     
-    @IBAction func calculateTip(_ sender: Any) {
-
-        let bill = Double(billAmountTextField.text!) ?? 0
-        let tipPercentages = [0.15, 0.18, 0.2]
-        let tip = bill * tipPercentages[tipControl.selectedSegmentIndex]
-        let total = bill + tip
-
-        tipAmountLabel.text = String(format: "$%.2f", tip)
-        totalLabel.text = String(format: "$%.2f", total)
-    }
-
     @objc func setCustomTip1(_ notification: Notification) {
-        var numSeg = 0
-        while numSeg < 3 {
-            let customTip = notification.object as! String?
-            tipControl.setTitle(customTip, forSegmentAt: numSeg)
-            numSeg += 1
-        }
+        let customTip1 = notification.object as! String?
+        tipControl.setTitle(customTip1, forSegmentAt: 0)
+        customTips.append(Double(customTip1!) ?? 0)
     }
     
     @objc func setCustomTip2(_ notification: Notification) {
-        let customTip = notification.object as! String?
-        tipControl.setTitle(customTip, forSegmentAt: 1)
+        let customTip2 = notification.object as! String?
+        tipControl.setTitle(customTip2, forSegmentAt: 1)
+        customTips.append(Double(customTip2!) ?? 0)
     }
     
     @objc func setCustomTip3(_ notification: Notification) {
-        let customTip = notification.object as! String?
-        tipControl.setTitle(customTip, forSegmentAt: 2)
+        let customTip3 = notification.object as! String?
+        tipControl.setTitle(customTip3, forSegmentAt: 2)
+        customTips.append(Double(customTip3!) ?? 0)
     }
     
     @objc func getNotification(_ notification: Notification) {
@@ -90,5 +79,23 @@ class ViewController: UIViewController {
             text3.textColor = .black
         }
     }
+    
+    @IBAction func calculateTip(_ sender: Any) {
+        
+        var tipPercentages = [Double]()
+        let bill = Double(billAmountTextField.text!) ?? 0
+        print(customTips)
+        if !customTips.isEmpty {
+            tipPercentages = [customTips[0],customTips[1],customTips[2]]
+        } else {
+            tipPercentages = [0.15, 0.18, 0.2]
+        }
+        let tip = bill * tipPercentages[tipControl.selectedSegmentIndex]
+        let total = bill + tip
+
+        tipAmountLabel.text = String(format: "$%.2f", tip)
+        totalLabel.text = String(format: "$%.2f", total)
+    }
+
 }
 
