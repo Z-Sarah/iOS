@@ -18,53 +18,39 @@ class ViewController: UIViewController {
     @IBOutlet weak var text2: UILabel!
     @IBOutlet weak var text3: UILabel!
     var customTips = [0.15, 0.18, 0.2]
+    var tipDict = [0 : "tip0", 1 : "tip1", 2 : "tip2"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Tip Calculator"
 
-        NotificationCenter.default.addObserver(self, selector: #selector(getNotification(_:)), name: Notification.Name("switchMode"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setDarkModeVC(_:)), name: Notification.Name("switchMode"), object: nil)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(setCustomTip1(_:)), name: Notification.Name("customTip1"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setCustomTips(_:)), name: Notification.Name("tip0"), object: nil)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(setCustomTip2(_:)), name: Notification.Name("customTip2"), object: nil)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(setCustomTip3(_:)), name: Notification.Name("customTip3"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setCustomTips(_:)), name: Notification.Name("tip1"), object: nil)
+
+        NotificationCenter.default.addObserver(self, selector: #selector(setCustomTips(_:)), name: Notification.Name("tip2"), object: nil)
         
         tipControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.blue], for: .selected)
+        
+    }
+
+    @objc func setCustomTips(_ notification: Notification) {
+        let notificationName = notification.name.rawValue
+        let index = Int(notification.name.rawValue.dropFirst(3))
+        let myCustomTips = notification.object as! String?
+        tipControl.setTitle(myCustomTips, forSegmentAt: index ?? 0)
+        UserDefaults.standard.setValue(myCustomTips, forKey: notificationName)
+        showCustomTip(customTip: myCustomTips!, index: index ?? 0)
     }
     
-    @objc func setCustomTip1(_ notification: Notification) {
-        var customTip1 = notification.object as! String?
-        tipControl.setTitle(customTip1, forSegmentAt: 0)
-        UserDefaults.standard.setValue(customTip1, forKey: "tip1")
-        if customTip1?.last == "%" {
-            customTip1!.removeLast()
-        }
-        customTips[0] = Double(customTip1!)!/100.0
+    func showCustomTip(customTip: String, index: Int) {
+        let myCustomTip = customTip.dropLast()
+        customTips[index] = Double(myCustomTip)!/100.0
     }
     
-    @objc func setCustomTip2(_ notification: Notification) {
-        var customTip2 = notification.object as! String?
-        tipControl.setTitle(customTip2, forSegmentAt: 1)
-        UserDefaults.standard.setValue(customTip2, forKey: "tip2")
-        if customTip2?.last == "%" {
-            customTip2!.removeLast()
-        }
-        customTips[1] = Double(customTip2!)!/100.0
-    }
-    
-    @objc func setCustomTip3(_ notification: Notification) {
-        var customTip3 = notification.object as! String?
-        tipControl.setTitle(customTip3, forSegmentAt: 2)
-        UserDefaults.standard.setValue(customTip3, forKey: "tip3")
-        if customTip3?.last == "%" {
-            customTip3!.removeLast()
-        }
-        customTips[2] = Double(customTip3!)!/100.0
-    }
-    
-    @objc func getNotification(_ notification: Notification) {
+    @objc func setDarkModeVC(_ notification: Notification) {
         let isDarkMode = UserDefaults.standard.bool(forKey: "switchMode")
         if(isDarkMode) {
             view.backgroundColor = .black
