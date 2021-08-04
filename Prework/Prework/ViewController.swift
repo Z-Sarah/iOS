@@ -19,11 +19,12 @@ class ViewController: UIViewController {
     @IBOutlet weak var text3: UILabel!
     var customTips = [0.15, 0.18, 0.2]
     var tipDict = [0 : "tip0", 1 : "tip1", 2 : "tip2"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Tip Calculator"
 
-        NotificationCenter.default.addObserver(self, selector: #selector(getNotification(_:)), name: Notification.Name("switchMode"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setDarkModeVC(_:)), name: Notification.Name("switchMode"), object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(setCustomTips(_:)), name: Notification.Name("tip0"), object: nil)
         
@@ -32,6 +33,7 @@ class ViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(setCustomTips(_:)), name: Notification.Name("tip2"), object: nil)
         
         tipControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.blue], for: .selected)
+        
     }
     
     @objc func setCustomTips(_ notification: Notification) {
@@ -41,7 +43,6 @@ class ViewController: UIViewController {
         tipControl.setTitle(myCustomTips, forSegmentAt: index ?? 0)
         UserDefaults.standard.setValue(myCustomTips, forKey: notificationName)
         showCustomTip(customTip: myCustomTips!, index: index ?? 0)
-//        print(String(index) + "..." + notificationName)
     }
     
     func showCustomTip(customTip: String, index: Int) {
@@ -49,7 +50,7 @@ class ViewController: UIViewController {
         customTips[index] = Double(myCustomTip)!/100.0
     }
     
-    @objc func getNotification(_ notification: Notification) {
+    @objc func setDarkModeVC(_ notification: Notification) {
         let isDarkMode = UserDefaults.standard.bool(forKey: "switchMode")
         if(isDarkMode) {
             view.backgroundColor = .black

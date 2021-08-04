@@ -59,7 +59,7 @@ class SettingsViewController: UIViewController {
         }
     }
     
-    @IBAction func setTips(_ sender: Any) {
+    @IBAction func setNotification(_ sender: Any) {
         UserDefaults.standard.set(mySwitch.isOn, forKey: "switchMode")
         NotificationCenter.default.post(name: Notification.Name("switchMode"), object: nil)
         
