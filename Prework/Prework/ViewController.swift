@@ -35,7 +35,7 @@ class ViewController: UIViewController {
         tipControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.blue], for: .selected)
         
     }
-    
+
     @objc func setCustomTips(_ notification: Notification) {
         let notificationName = notification.name.rawValue
         let index = Int(notification.name.rawValue.dropFirst(3))
